@@ -26,7 +26,7 @@ class JuegoDeLaVida:
         self.updateView()
 
     def contadorVecinas(self, i, j):
-        vecinas = {'arriba': (1, 0), 'abajo': (-1, 0), 'izq': (0, -1), 'der': (0, 1)}
+        vecinas = {'arriba': (1, 0), 'abajo': (-1, 0), 'izq': (0, -1), 'der': (0, 1), 'arr_izq': (1,-1), 'arr_der': (1,1), 'abj_izq':(-1,-1), 'abj_der': (-1,1)}
         no_vecinas = 0
 
         for key, value in vecinas.items():
@@ -44,8 +44,7 @@ class JuegoDeLaVida:
             for j in range(self.t_size):
                 estado = random.choice([0, 1])  # 0 para muerto, 1 para vivo
                 color = "green" if estado else "white"
-                celda = self.canvas.create_rectangle(j * 30, i * 30, (j + 1) * 30, (i + 1) * 30, fill=color,
-                                                     outline="black")
+                celda = self.canvas.create_rectangle(j * 30, i * 30, (j + 1) * 30, (i + 1) * 30, fill=color,outline="black")
                 fila.append(estado)
                 fila_canvas.append(celda)
             self.celdas.append(fila)
@@ -71,7 +70,7 @@ class JuegoDeLaVida:
                 color = "green" if self.celdas[i][j] else "white"
                 self.canvas.itemconfig(self.celdas_canvas[i][j], fill=color)
 
-t_size = 9
+t_size = 25
 ventana = tk.Tk()
 ventana.title("Juego de la Vida")
 canvas = tk.Canvas(ventana, width=t_size * 30, height=t_size * 30)
